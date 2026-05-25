@@ -48,7 +48,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-          RAILWAY_SERVICE: ${{ vars.RAILWAY_SERVICE || 'azeez-resume-backend' }}
+          RAILWAY_SERVICE: ${{ secrets.RAILWAY_SERVICE || vars.RAILWAY_SERVICE }}
           RAILWAY_ENVIRONMENT: ${{ vars.RAILWAY_ENVIRONMENT || 'production' }}
         run: |
           if [ -z "$RAILWAY_PROJECT_ID" ]; then
@@ -57,8 +57,14 @@ jobs:
             exit 1
           fi
 
-          railway up \
+          args=(
             --detach \
             --project "$RAILWAY_PROJECT_ID" \
-            --service "$RAILWAY_SERVICE" \
             --environment "$RAILWAY_ENVIRONMENT"
+          )
+
+          if [ -n "$RAILWAY_SERVICE" ]; then
+            args+=(--service "$RAILWAY_SERVICE")
+          fi
+
+          railway up "${args[@]}"

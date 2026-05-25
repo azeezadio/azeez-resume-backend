@@ -18,10 +18,18 @@ environment. The token must not be committed to the repository.
 The workflow cannot rely on a local `railway link` context because GitHub checks
 out a fresh copy of the repository on every run.
 
-Optional repository variables:
+Optional repository secret or variable:
 
 ```text
-RAILWAY_SERVICE=azeez-resume-backend
+RAILWAY_SERVICE=<exact Railway service id or name>
+```
+
+Only set `RAILWAY_SERVICE` after the app service exists in Railway. If it is
+wrong, Railway returns `Service not found`.
+
+Optional repository variable:
+
+```text
 RAILWAY_ENVIRONMENT=production
 ```
 
