@@ -1,0 +1,62 @@
+{
+  "name": "azeez-resume-backend",
+  "version": "1.0.0",
+  "description": "Azeez Resume Backend API",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "dist/src/server.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start": "node dist/src/server.js",
+    "build": "tsc",
+    "knex": "ts-node -r dotenv/config ./node_modules/knex/bin/cli.js",
+    "db:migrate:make": "yarn knex migrate:make",
+    "db:migrate": "yarn knex migrate:latest",
+    "db:migrate:rollback": "yarn knex migrate:rollback",
+    "db:seed:make": "yarn knex seed:make",
+    "db:seed": "yarn knex seed:run",
+    "db:bootstrap": "yarn db:migrate && yarn db:seed",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1030.0",
+    "@aws-sdk/s3-request-presigner": "^3.1030.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "http-status": "^1.7.4",
+    "joi": "^17.13.3",
+    "knex": "^3.1.0",
+    "module-alias": "^2.2.3",
+    "objection": "^3.1.5",
+    "pg": "^8.12.0",
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
+    "pino-pretty": "^11.2.2",
+    "reflect-metadata": "^0.2.2",
+    "restana": "^4.9.9",
+    "tsyringe": "^4.8.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.14.10",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.5.3"
+  },
+  "_moduleAliases": {
+    "@config": "dist/src/config",
+    "@shared": "dist/src/shared",
+    "@modules": "dist/src/modules",
+    "@models": "dist/src/models",
+    "@repositories": "dist/src/repositories"
+  }
+}
