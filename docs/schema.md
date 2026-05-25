@@ -1,8 +1,22 @@
 # Content Schema
 
+## Site Content
+
+The current portfolio website is modeled separately from future writing
+features. The frontend should read the editorial homepage from `/api/v1/site`.
+
+Core tables:
+
+- `site_profiles` - identity, headline, contact links, portrait, and resume.
+- `homepage_sections` - hero/about/skills/experience/recognition/talks/contact section copy.
+- `skill_groups` - grouped skill labels and item arrays.
+- `experience_entries` - career timeline entries.
+- `recognition_entries` - awards and recognition, with optional media.
+- `talk_entries` - talks and press items, with optional media.
+
 ## Articles
 
-Articles are long-form public entries. They are archived by `year` and `month`
+Articles are a future long-form writing module. They are archived by `year` and `month`
 so the frontend can build `/articles/2026/05/...` views without deriving dates
 at query time.
 
@@ -23,7 +37,7 @@ Core fields:
 
 ## Memoir Entries
 
-Memoir entries are dated personal/contextual entries. They are also archived by
+Memoir entries are a future dated personal/contextual writing module. They are also archived by
 `year` and `month`, with optional `occurred_on`, `location`, and `mood`.
 
 ## Media Buckets

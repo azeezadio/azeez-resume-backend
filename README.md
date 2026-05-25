@@ -15,6 +15,7 @@ Restana + TypeScript backend for the resume site content system.
 
 The first schema supports:
 
+- Structured portfolio site content for profile, homepage sections, skills, experience, recognition, and talks.
 - Articles grouped by year and month, with publishing state and SEO metadata.
 - Memoir entries grouped by year and month, with event dates and reflective content.
 - Bucket references for Railway object storage or any S3-compatible provider.
@@ -40,8 +41,8 @@ Health check:
 
 The editorial website content is seeded into Postgres during Railway pre-deploy:
 
-- Talks and press features are stored as `articles`.
-- Profile, career, and recognition timeline entries are stored as `memoir_entries`.
+- Profile, homepage sections, skills, career history, recognition, and talks are stored in dedicated site tables.
+- Articles and memoir entries are kept as empty future content modules.
 - Website images and resume PDF are stored as `media_assets` metadata.
 
 Upload the current website media files into the connected Railway bucket from a

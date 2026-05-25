@@ -12,6 +12,7 @@ import healthRoute from '@modules/health/health.route';
 import articleRoute from '@modules/article/article.route';
 import memoirRoute from '@modules/memoir/memoir.route';
 import mediaRoute from '@modules/media/media.route';
+import siteRoute from '@modules/site/site.route';
 
 class App {
   public appServer: Server;
@@ -32,6 +33,7 @@ class App {
     articleRoute(this.appServer, RouteVersion['v1.articles']);
     memoirRoute(this.appServer, RouteVersion['v1.memoirs']);
     mediaRoute(this.appServer, RouteVersion['v1.media']);
+    siteRoute(this.appServer, RouteVersion['v1.site']);
   }
 
   public async close() {
