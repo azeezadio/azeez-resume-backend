@@ -57,14 +57,15 @@ jobs:
             exit 1
           fi
 
-          args=(
-            --detach \
-            --project "$RAILWAY_PROJECT_ID" \
-            --environment "$RAILWAY_ENVIRONMENT"
-          )
-
-          if [ -n "$RAILWAY_SERVICE" ]; then
-            args+=(--service "$RAILWAY_SERVICE")
+          if [ -z "$RAILWAY_SERVICE" ]; then
+            echo "Missing RAILWAY_SERVICE secret or variable."
+            echo "Your Railway project has multiple services, so CI needs the exact app service id or name."
+            echo "Add it in GitHub: Settings > Secrets and variables > Actions."
+            exit 1
           fi
 
-          railway up "${args[@]}"
+          railway up \
+            --detach \
+            --project "$RAILWAY_PROJECT_ID" \
+            --service "$RAILWAY_SERVICE" \
+            --environment "$RAILWAY_ENVIRONMENT"

@@ -9,6 +9,7 @@ Add this repository secret:
 ```text
 RAILWAY_TOKEN
 RAILWAY_PROJECT_ID
+RAILWAY_SERVICE
 ```
 
 Use a Railway project token scoped to the `resume` project and `production`
@@ -18,14 +19,15 @@ environment. The token must not be committed to the repository.
 The workflow cannot rely on a local `railway link` context because GitHub checks
 out a fresh copy of the repository on every run.
 
-Optional repository secret or variable:
+Required repository secret or variable:
 
 ```text
 RAILWAY_SERVICE=<exact Railway service id or name>
 ```
 
-Only set `RAILWAY_SERVICE` after the app service exists in Railway. If it is
-wrong, Railway returns `Service not found`.
+Set `RAILWAY_SERVICE` to the exact app service id or name from Railway. The
+project has multiple services, so Railway cannot infer which one should receive
+the deploy. If it is wrong, Railway returns `Service not found`.
 
 Optional repository variable:
 
