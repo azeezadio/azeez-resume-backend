@@ -32,7 +32,7 @@ railway variable set \
   S3_PRIVATE_BUCKET="$BUCKET" \
   S3_ACCESS_KEY_ID="$ACCESS_KEY_ID" \
   S3_SECRET_ACCESS_KEY="$SECRET_ACCESS_KEY" \
-  S3_FORCE_PATH_STYLE=true \
+  S3_FORCE_PATH_STYLE=false \
   --service "$APP_SERVICE"
 
 echo "Bucket variables set on ${APP_SERVICE}."

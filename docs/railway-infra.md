@@ -41,7 +41,7 @@ The script sets:
 - `S3_PUBLIC_BUCKET=resume-public`
 - `S3_PRIVATE_BUCKET=resume-private`
 - `S3_REGION=iad`
-- `S3_FORCE_PATH_STYLE=true`
+- `S3_FORCE_PATH_STYLE=false`
 - `S3_ENDPOINT`
 - `S3_ACCESS_KEY_ID`
 - `S3_SECRET_ACCESS_KEY`
@@ -63,7 +63,7 @@ S3_SECRET_ACCESS_KEY=<bucket secret key>
 S3_PUBLIC_BUCKET=resume-public
 S3_PRIVATE_BUCKET=resume-private
 S3_REGION=iad
-S3_FORCE_PATH_STYLE=true
+S3_FORCE_PATH_STYLE=false
 ```
 
 Keep `DATABASE_URL` as a Railway reference so the app follows the Postgres

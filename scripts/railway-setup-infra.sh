@@ -59,7 +59,7 @@ railway variable set \
   S3_PUBLIC_BUCKET="${PUBLIC_BUCKET}" \
   S3_PRIVATE_BUCKET="${PRIVATE_BUCKET}" \
   S3_REGION="${BUCKET_REGION}" \
-  S3_FORCE_PATH_STYLE=true \
+  S3_FORCE_PATH_STYLE=false \
   --service "${APP_SERVICE}"
 
 if has_bucket_cli; then

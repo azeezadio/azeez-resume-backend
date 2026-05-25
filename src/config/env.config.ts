@@ -35,5 +35,5 @@ export const storage = {
   secretAccessKey: process.env.SECRET_ACCESS_KEY ?? process.env.S3_SECRET_ACCESS_KEY,
   publicBucket: process.env.BUCKET ?? process.env.S3_PUBLIC_BUCKET ?? 'resume-public',
   privateBucket: process.env.BUCKET ?? process.env.S3_PRIVATE_BUCKET ?? 'resume-private',
-  forcePathStyle: (process.env.S3_FORCE_PATH_STYLE ?? 'true') === 'true',
+  forcePathStyle: (process.env.S3_FORCE_PATH_STYLE ?? 'false') === 'true',
 };
