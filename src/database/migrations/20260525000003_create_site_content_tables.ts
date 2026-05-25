@@ -8,6 +8,13 @@ const withBaseColumns = (table: Knex.CreateTableBuilder, knex: Knex) => {
 };
 
 export async function up(knex: Knex): Promise<void> {
+  await knex.schema.dropTableIfExists('talk_entries');
+  await knex.schema.dropTableIfExists('recognition_entries');
+  await knex.schema.dropTableIfExists('experience_entries');
+  await knex.schema.dropTableIfExists('skill_groups');
+  await knex.schema.dropTableIfExists('homepage_sections');
+  await knex.schema.dropTableIfExists('site_profiles');
+
   await knex.schema.createTable('site_profiles', (table) => {
     withBaseColumns(table, knex);
     table.string('slug').notNullable().unique();
