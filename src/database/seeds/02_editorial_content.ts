@@ -1,5 +1,7 @@
 import { Knex } from 'knex';
 
+const asJson = (value: unknown) => JSON.stringify(value);
+
 const mediaAssets = [
   ['images/portrait.jpg', 'portrait.jpg', 'image/jpeg', 'Adio Azeez Adeniran, photographed in Lagos, 2026.', 'Homepage portrait.'],
   ['images/portrait 2.jpg', 'portrait 2.jpg', 'image/jpeg', 'Adio Azeez Adeniran portrait alternate.', 'Alternate homepage portrait.'],
@@ -114,10 +116,10 @@ export async function seed(knex: Knex): Promise<void> {
           file_name: fileName,
           alt_text: altText,
           caption,
-          metadata: {
+          metadata: asJson({
             source: 'website',
             localPath: `/public/${storageKey}`,
-          },
+          }),
         })),
       )
       .onConflict(['bucket_id', 'storage_key'])
@@ -140,7 +142,7 @@ export async function seed(knex: Knex): Promise<void> {
       github_url: 'https://github.com/azeezadio',
       portrait_media_id: portraitMediaId,
       resume_media_id: resumeMediaId,
-      metadata: { source: 'website' },
+      metadata: asJson({ source: 'website' }),
     })
     .onConflict('slug')
     .merge([
@@ -158,12 +160,18 @@ export async function seed(knex: Knex): Promise<void> {
     ]);
 
   await knex('homepage_sections')
-    .insert(sections)
+    .insert(sections.map((section) => ({ ...section, metadata: asJson(section.metadata) })))
     .onConflict('key')
     .merge(['chapter', 'title', 'subtitle', 'body', 'sort_order', 'is_active', 'metadata']);
 
   await knex('skill_groups').del();
-  await knex('skill_groups').insert(skills.map((skill) => ({ ...skill, metadata: { source: 'website' } })));
+  await knex('skill_groups').insert(
+    skills.map((skill) => ({
+      ...skill,
+      items: asJson(skill.items),
+      metadata: asJson({ source: 'website' }),
+    })),
+  );
 
   await knex('experience_entries').del();
   await knex('experience_entries').insert(
@@ -175,7 +183,7 @@ export async function seed(knex: Knex): Promise<void> {
       start_year: startYear,
       end_year: endYear,
       sort_order: (index + 1) * 10,
-      metadata: { source: 'website' },
+      metadata: asJson({ source: 'website' }),
     })),
   );
 
@@ -189,7 +197,7 @@ export async function seed(knex: Knex): Promise<void> {
         description: organization,
         media_id: fileName ? await mediaIdByFileName(knex, fileName) : null,
         sort_order: (index + 1) * 10,
-        metadata: { source: 'website' },
+        metadata: asJson({ source: 'website' }),
       })),
     ),
   );
@@ -205,7 +213,7 @@ export async function seed(knex: Knex): Promise<void> {
         summary,
         media_id: fileName ? await mediaIdByFileName(knex, fileName) : null,
         sort_order: (index + 1) * 10,
-        metadata: { source: 'website' },
+        metadata: asJson({ source: 'website' }),
       })),
     ),
   );
