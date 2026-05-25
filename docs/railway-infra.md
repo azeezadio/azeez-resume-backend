@@ -29,18 +29,6 @@ and wires core app variables. If your Railway CLI exposes bucket commands, it
 will also create the media buckets and connect credentials. If it does not,
 finish the bucket setup from the Railway dashboard.
 
-## GitHub setup workflow
-
-There is also a manual GitHub Actions workflow named `Setup Railway Infra`.
-Run it from the Actions tab after these secrets exist:
-
-```text
-RAILWAY_TOKEN
-RAILWAY_PROJECT_ID
-```
-
-It targets the Railway service named `resume` by default.
-
 ## Variables set on the app service
 
 The script sets:
