@@ -3,7 +3,7 @@
 The backend expects these Railway resources in the `resume` project,
 `production` environment:
 
-- App service: `azeez-resume-backend`
+- App service: `resume`
 - Postgres service: `Postgres`
 - Public media bucket: `resume-public`
 - Private media bucket: `resume-private`
@@ -14,9 +14,9 @@ Run from the backend repo:
 
 ```bash
 chmod +x scripts/railway-setup-infra.sh
-RAILWAY_PROJECT_NAME=resume \
+RAILWAY_PROJECT_ID=<railway-project-id> \
 RAILWAY_ENVIRONMENT_NAME=production \
-RAILWAY_APP_SERVICE=azeez-resume-backend \
+RAILWAY_APP_SERVICE=resume \
 RAILWAY_POSTGRES_SERVICE=Postgres \
 S3_PUBLIC_BUCKET=resume-public \
 S3_PRIVATE_BUCKET=resume-private \
@@ -28,6 +28,18 @@ The script links the project, selects `production`, ensures Postgres exists,
 and wires core app variables. If your Railway CLI exposes bucket commands, it
 will also create the media buckets and connect credentials. If it does not,
 finish the bucket setup from the Railway dashboard.
+
+## GitHub setup workflow
+
+There is also a manual GitHub Actions workflow named `Setup Railway Infra`.
+Run it from the Actions tab after these secrets exist:
+
+```text
+RAILWAY_TOKEN
+RAILWAY_PROJECT_ID
+```
+
+It targets the Railway service named `resume` by default.
 
 ## Variables set on the app service
 
@@ -54,7 +66,7 @@ Use these steps when `railway bucket` is not available in your local CLI:
 2. Create a public object storage bucket named `resume-public`.
 3. Create a private object storage bucket named `resume-private`.
 4. Copy the S3-compatible endpoint and access keys.
-5. Add these variables to the `azeez-resume-backend` service:
+5. Add these variables to the `resume` service:
 
 ```text
 S3_ENDPOINT=<bucket endpoint>

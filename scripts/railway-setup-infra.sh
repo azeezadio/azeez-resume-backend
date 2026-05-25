@@ -2,8 +2,9 @@
 set -euo pipefail
 
 PROJECT_NAME="${RAILWAY_PROJECT_NAME:-resume}"
+PROJECT_SELECTOR="${RAILWAY_PROJECT_ID:-${PROJECT_NAME}}"
 ENVIRONMENT_NAME="${RAILWAY_ENVIRONMENT_NAME:-production}"
-APP_SERVICE="${RAILWAY_APP_SERVICE:-azeez-resume-backend}"
+APP_SERVICE="${RAILWAY_APP_SERVICE:-resume}"
 POSTGRES_SERVICE="${RAILWAY_POSTGRES_SERVICE:-Postgres}"
 PUBLIC_BUCKET="${S3_PUBLIC_BUCKET:-resume-public}"
 PRIVATE_BUCKET="${S3_PRIVATE_BUCKET:-resume-private}"
@@ -26,8 +27,8 @@ service_exists() {
   railway service status --all --json | grep -q "\"name\":\"$1\""
 }
 
-echo "Linking Railway project: ${PROJECT_NAME}"
-railway link --project "${PROJECT_NAME}"
+echo "Linking Railway project: ${PROJECT_SELECTOR}"
+railway link --project "${PROJECT_SELECTOR}"
 
 echo "Selecting Railway environment: ${ENVIRONMENT_NAME}"
 railway environment "${ENVIRONMENT_NAME}"

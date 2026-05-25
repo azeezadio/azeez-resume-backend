@@ -1,0 +1,36 @@
+name: Setup Railway Infra
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    name: Setup production infra
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Setup Railway infrastructure
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_ENVIRONMENT_NAME: ${{ vars.RAILWAY_ENVIRONMENT || 'production' }}
+          RAILWAY_APP_SERVICE: ${{ secrets.RAILWAY_SERVICE || vars.RAILWAY_SERVICE || 'resume' }}
+          RAILWAY_POSTGRES_SERVICE: ${{ vars.RAILWAY_POSTGRES_SERVICE || 'Postgres' }}
+          S3_PUBLIC_BUCKET: ${{ vars.S3_PUBLIC_BUCKET || 'resume-public' }}
+          S3_PRIVATE_BUCKET: ${{ vars.S3_PRIVATE_BUCKET || 'resume-private' }}
+          RAILWAY_BUCKET_REGION: ${{ vars.RAILWAY_BUCKET_REGION || 'iad' }}
+        run: |
+          if [ -z "$RAILWAY_PROJECT_ID" ]; then
+            echo "Missing RAILWAY_PROJECT_ID secret."
+            exit 1
+          fi
+
+          chmod +x scripts/railway-setup-infra.sh
+          ./scripts/railway-setup-infra.sh
