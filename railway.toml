@@ -7,4 +7,4 @@ startCommand = "node dist/src/server.js"
 healthcheckPath = "/api/v1/health"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
-preDeployCommand = "node -r ts-node/register -r tsconfig-paths/register ./node_modules/.bin/knex migrate:latest --knexfile knexfile.ts"
+preDeployCommand = "yarn db:migrate && yarn db:seed"

@@ -29,11 +29,11 @@ export const database = {
 };
 
 export const storage = {
-  endpoint: process.env.S3_ENDPOINT,
-  region: process.env.S3_REGION ?? 'auto',
-  accessKeyId: process.env.S3_ACCESS_KEY_ID,
-  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-  publicBucket: process.env.S3_PUBLIC_BUCKET ?? 'resume-public',
-  privateBucket: process.env.S3_PRIVATE_BUCKET ?? 'resume-private',
+  endpoint: process.env.ENDPOINT ?? process.env.S3_ENDPOINT,
+  region: process.env.REGION ?? process.env.S3_REGION ?? 'auto',
+  accessKeyId: process.env.ACCESS_KEY_ID ?? process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY ?? process.env.S3_SECRET_ACCESS_KEY,
+  publicBucket: process.env.BUCKET ?? process.env.S3_PUBLIC_BUCKET ?? 'resume-public',
+  privateBucket: process.env.BUCKET ?? process.env.S3_PRIVATE_BUCKET ?? 'resume-private',
   forcePathStyle: (process.env.S3_FORCE_PATH_STYLE ?? 'true') === 'true',
 };

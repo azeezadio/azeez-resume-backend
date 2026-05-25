@@ -26,7 +26,7 @@ Railway runs:
 
 ```bash
 yarn install && yarn build
-node -r ts-node/register -r tsconfig-paths/register ./node_modules/.bin/knex migrate:latest --knexfile knexfile.ts
+yarn db:migrate && yarn db:seed
 node dist/src/server.js
 ```
 
@@ -34,4 +34,19 @@ Health check:
 
 ```text
 /api/v1/health
+```
+
+## Content Migration
+
+The editorial website content is seeded into Postgres during Railway pre-deploy:
+
+- Talks and press features are stored as `articles`.
+- Profile, career, and recognition timeline entries are stored as `memoir_entries`.
+- Website images and resume PDF are stored as `media_assets` metadata.
+
+Upload the current website media files into the connected Railway bucket from a
+local shell that is logged in to Railway:
+
+```bash
+railway run --service resume --environment production yarn media:upload
 ```

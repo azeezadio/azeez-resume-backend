@@ -18,6 +18,7 @@
     "db:seed:make": "yarn knex seed:make",
     "db:seed": "yarn knex seed:run",
     "db:bootstrap": "yarn db:migrate && yarn db:seed",
+    "media:upload": "ts-node src/scripts/uploadWebsiteMedia.ts",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint . --ext .ts --fix"
   },
