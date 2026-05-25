@@ -24,7 +24,7 @@ has_bucket_cli() {
 }
 
 service_exists() {
-  railway service status --all --json | grep -q "\"name\":\"$1\""
+  railway service status --all --json | grep -Eq "\"name\"[[:space:]]*:[[:space:]]*\"$1\""
 }
 
 echo "Linking Railway project: ${PROJECT_SELECTOR}"
