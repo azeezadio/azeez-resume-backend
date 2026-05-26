@@ -18,4 +18,6 @@ export const createArticleSchema = Joi.object({
 export const archiveQuerySchema = Joi.object({
   year: Joi.number().integer().min(1900).max(2200),
   month: Joi.number().integer().min(1).max(12),
+  category: Joi.string().trim(),
+  status: Joi.string().valid('draft', 'scheduled', 'published', 'archived').default('published'),
 });

@@ -6,8 +6,13 @@ const service = new ArticleService();
 
 export class ArticleController {
   async list(req: Request, res: Response) {
-    const { year, month } = req.query as { year?: number; month?: number };
-    return ok(res, await service.list(year, month));
+    const { year, month, category, status } = req.query as {
+      year?: number;
+      month?: number;
+      category?: string;
+      status?: string;
+    };
+    return ok(res, await service.list({ year, month, category, status }));
   }
 
   async findBySlug(req: Request, res: Response) {

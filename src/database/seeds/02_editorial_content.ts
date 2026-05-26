@@ -1,6 +1,21 @@
 import { Knex } from 'knex';
 
 const asJson = (value: unknown) => JSON.stringify(value);
+const encodeStorageKey = (value: string) => value.split('/').map(encodeURIComponent).join('/');
+
+const publicUrlFor = (bucketName: string, storageKey: string) => {
+  const endpoint = process.env.ENDPOINT ?? process.env.S3_ENDPOINT;
+  if (!endpoint) return null;
+
+  const normalizedEndpoint = endpoint.replace(/\/$/, '');
+  const forcePathStyle = (process.env.S3_FORCE_PATH_STYLE ?? 'false') === 'true';
+  if (forcePathStyle) {
+    return `${normalizedEndpoint}/${bucketName}/${encodeStorageKey(storageKey)}`;
+  }
+
+  const url = new URL(normalizedEndpoint);
+  return `${url.protocol}//${bucketName}.${url.host}/${encodeStorageKey(storageKey)}`;
+};
 
 const mediaAssets = [
   ['images/portrait.jpg', 'portrait.jpg', 'image/jpeg', 'Adio Azeez Adeniran, photographed in Lagos, 2026.', 'Homepage portrait.'],
@@ -94,6 +109,32 @@ const talks = [
   ['Feature', '2025-11-01', 'The Cloud Tribe: African Voices', 'Huawei Cloud Sub-Saharan Africa', "Featured as a Group Engineering Manager at PiggyTech - discussed AI, cloud security, Africa's digital transformation.", 'huawei-feature.png'],
 ] as const;
 
+const articles = [
+  {
+    slug: 'engineering-management-vibe-ai-assisted-coding',
+    title: 'Engineering Management in the Age of Vibe & AI-Assisted Coding',
+    excerpt:
+      'A practical note on leading engineering teams when AI changes how code is produced, reviewed, and owned.',
+    body: [
+      '# Engineering Management in the Age of Vibe & AI-Assisted Coding',
+      'AI-assisted coding changes the speed of production, but it does not remove the need for engineering judgment.',
+      'The work of an engineering manager becomes less about watching every line and more about shaping the system around the work: clearer ownership, stronger review habits, better technical boundaries, and shared standards that make fast output safe.',
+      'The teams that benefit most from AI will not be the teams that generate the most code. They will be the teams that know what should exist, why it should exist, and how it should behave when real users depend on it.',
+      'This is the first draft of a longer essay.',
+    ].join('\n\n'),
+    fileName: 'dev-hangout.jpeg',
+    year: 2025,
+    month: 11,
+    published_at: '2025-11-29T12:00:00.000Z',
+    metadata: {
+      source: 'website',
+      category: 'Engineering Leadership',
+      tags: ['AI', 'Engineering Management', 'Leadership'],
+      readingTimeMinutes: 4,
+    },
+  },
+] as const;
+
 async function mediaIdByFileName(knex: Knex, fileName: string) {
   const media = await knex('media_assets').where({ file_name: fileName }).first('id');
   return media?.id ?? null;
@@ -112,6 +153,7 @@ export async function seed(knex: Knex): Promise<void> {
           bucket_id: bucket.id,
           owner_type: 'standalone',
           storage_key: storageKey,
+          public_url: publicUrlFor(bucketName, storageKey),
           mime_type: mimeType,
           file_name: fileName,
           alt_text: altText,
@@ -123,7 +165,7 @@ export async function seed(knex: Knex): Promise<void> {
         })),
       )
       .onConflict(['bucket_id', 'storage_key'])
-      .merge(['mime_type', 'file_name', 'alt_text', 'caption', 'metadata']);
+      .merge(['public_url', 'mime_type', 'file_name', 'alt_text', 'caption', 'metadata']);
   }
 
   const portraitMediaId = await mediaIdByFileName(knex, 'portrait.jpg');
@@ -217,4 +259,38 @@ export async function seed(knex: Knex): Promise<void> {
       })),
     ),
   );
+
+  await knex('articles')
+    .insert(
+      await Promise.all(
+        articles.map(async (article) => ({
+          slug: article.slug,
+          title: article.title,
+          excerpt: article.excerpt,
+          body: article.body,
+          cover_media_id: await mediaIdByFileName(knex, article.fileName),
+          status: 'published',
+          year: article.year,
+          month: article.month,
+          published_at: article.published_at,
+          seo_title: article.title,
+          seo_description: article.excerpt,
+          metadata: asJson(article.metadata),
+        })),
+      ),
+    )
+    .onConflict('slug')
+    .merge([
+      'title',
+      'excerpt',
+      'body',
+      'cover_media_id',
+      'status',
+      'year',
+      'month',
+      'published_at',
+      'seo_title',
+      'seo_description',
+      'metadata',
+    ]);
 }

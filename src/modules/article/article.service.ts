@@ -1,11 +1,19 @@
-import { ArticleRepository } from '@repositories/article.repository';
+import { ArticleListFilters, ArticleRepository } from '@repositories/article.repository';
 import { AppError } from '@shared/utils/error/app.error';
 
 export class ArticleService {
   private readonly articles = new ArticleRepository();
 
-  list(year?: number, month?: number) {
-    return this.articles.listByArchive(year, month);
+  async list(filters: ArticleListFilters = {}) {
+    const [items, availableFilters] = await Promise.all([
+      this.articles.listByArchive(filters),
+      this.articles.listFilters(),
+    ]);
+
+    return {
+      items,
+      filters: availableFilters,
+    };
   }
 
   async findBySlug(slug: string) {

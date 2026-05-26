@@ -17,4 +17,5 @@ export default class ArticleModel extends BaseModel {
   seo_title?: string | null;
   seo_description?: string | null;
   metadata!: Record<string, unknown>;
+  cover?: Record<string, unknown> | null;
 }
