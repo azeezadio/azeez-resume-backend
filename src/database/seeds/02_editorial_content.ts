@@ -116,29 +116,6 @@ const talks = [
 
 const articles = [
   {
-    slug: 'engineering-management-vibe-ai-assisted-coding',
-    title: 'Engineering Management in the Age of Vibe & AI-Assisted Coding',
-    excerpt:
-      'A practical note on leading engineering teams when AI changes how code is produced, reviewed, and owned.',
-    body: [
-      '# Engineering Management in the Age of Vibe & AI-Assisted Coding',
-      'AI-assisted coding changes the speed of production, but it does not remove the need for engineering judgment.',
-      'The work of an engineering manager becomes less about watching every line and more about shaping the system around the work: clearer ownership, stronger review habits, better technical boundaries, and shared standards that make fast output safe.',
-      'The teams that benefit most from AI will not be the teams that generate the most code. They will be the teams that know what should exist, why it should exist, and how it should behave when real users depend on it.',
-      'This is the first draft of a longer essay.',
-    ].join('\n\n'),
-    fileName: 'dev-hangout.jpeg',
-    year: 2025,
-    month: 11,
-    published_at: '2025-11-29T12:00:00.000Z',
-    metadata: {
-      source: 'website',
-      category: 'Engineering Leadership',
-      tags: ['AI', 'Engineering Management', 'Leadership'],
-      readingTimeMinutes: 4,
-    },
-  },
-  {
     slug: 'motion-sickness',
     title: 'Motion Sickness',
     excerpt:
