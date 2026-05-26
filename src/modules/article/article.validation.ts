@@ -20,4 +20,5 @@ export const archiveQuerySchema = Joi.object({
   month: Joi.number().integer().min(1).max(12),
   category: Joi.string().trim(),
   status: Joi.string().valid('draft', 'scheduled', 'published', 'archived').default('published'),
+  locale: Joi.string().trim().valid('en', 'zh', 'ar', 'es'),
 });
