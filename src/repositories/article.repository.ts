@@ -56,7 +56,7 @@ export class ArticleRepository extends BaseRepository<ArticleModel> {
         .select(ArticleModel.raw("DISTINCT articles.metadata ->> 'category' as category"))
         .whereNull('articles.deleted_at')
         .where({ 'articles.status': 'published' })
-        .whereRaw("articles.metadata ? 'category'")
+        .whereRaw("articles.metadata ->> 'category' IS NOT NULL")
         .orderBy('category', 'asc'),
     ]);
 
