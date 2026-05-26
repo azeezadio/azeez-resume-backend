@@ -31,7 +31,7 @@ const mediaAssets = [
   ['images/patronize-staff-of-year.png', 'patronize-staff-of-year.png', 'image/png', 'Patronize Staff of the Year award.', 'Recognition media.'],
   ['images/cross-dept-award.png', 'cross-dept-award.png', 'image/png', 'Cross-departmental collaboration award.', 'Recognition media.'],
   ['images/design-spinoff.jpeg', 'design-spinoff.jpeg', 'image/jpeg', 'Design Spin-off 2025.', 'Talk media.'],
-  ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Iridescent figures, satellites, and orbital computing over a Lagos map.', 'Motion Sickness article cover.'],
+  ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Panoramic iridescent technology scene with satellites, neural diagrams, Lagos map details, and chrome human figures.', 'Motion Sickness panoramic cover artwork.'],
   ['documents/Adio_Azeez_Adeniran_Resume.pdf', 'Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'Adio Azeez Adeniran resume PDF.', 'Resume document.'],
 ] as const;
 
