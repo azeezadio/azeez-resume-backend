@@ -128,6 +128,8 @@ const articles = [
     metadata: {
       source: 'website',
       category: 'AI & Society',
+      canonicalUrl: 'https://azeezadio.com/articles/motion-sickness',
+      substackUrl: 'https://azeezadio.substack.com/p/motion-sickness?r=kfhxz',
       tags: ['AI', 'Robotics', 'Infrastructure', 'Nigeria', 'Technology'],
       readingTimeMinutes: 18,
     },
