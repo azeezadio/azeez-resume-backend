@@ -1,6 +1,10 @@
 import { Knex } from 'knex';
+import { readFileSync } from 'fs';
+import path from 'path';
 
 const asJson = (value: unknown) => JSON.stringify(value);
+const articleBody = (fileName: string) =>
+  readFileSync(path.join(__dirname, 'content', fileName), 'utf8').trim();
 const encodeStorageKey = (value: string) => value.split('/').map(encodeURIComponent).join('/');
 
 const publicUrlFor = (bucketName: string, storageKey: string) => {
@@ -27,6 +31,7 @@ const mediaAssets = [
   ['images/patronize-staff-of-year.png', 'patronize-staff-of-year.png', 'image/png', 'Patronize Staff of the Year award.', 'Recognition media.'],
   ['images/cross-dept-award.png', 'cross-dept-award.png', 'image/png', 'Cross-departmental collaboration award.', 'Recognition media.'],
   ['images/design-spinoff.jpeg', 'design-spinoff.jpeg', 'image/jpeg', 'Design Spin-off 2025.', 'Talk media.'],
+  ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Iridescent figures, satellites, and orbital computing over a Lagos map.', 'Motion Sickness article cover.'],
   ['documents/Adio_Azeez_Adeniran_Resume.pdf', 'Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'Adio Azeez Adeniran resume PDF.', 'Resume document.'],
 ] as const;
 
@@ -131,6 +136,23 @@ const articles = [
       category: 'Engineering Leadership',
       tags: ['AI', 'Engineering Management', 'Leadership'],
       readingTimeMinutes: 4,
+    },
+  },
+  {
+    slug: 'motion-sickness',
+    title: 'Motion Sickness',
+    excerpt:
+      'A dizzy dispatch on robots, orbital data centres, AI CEOs, China, war, Nigerian fintech, parents on WhatsApp, and what remains human when everything accelerates.',
+    body: articleBody('motion-sickness.md'),
+    fileName: 'motion-sickness.jpg',
+    year: 2026,
+    month: 5,
+    published_at: '2026-05-26T01:00:00.000Z',
+    metadata: {
+      source: 'website',
+      category: 'AI & Society',
+      tags: ['AI', 'Robotics', 'Infrastructure', 'Nigeria', 'Technology'],
+      readingTimeMinutes: 18,
     },
   },
 ] as const;

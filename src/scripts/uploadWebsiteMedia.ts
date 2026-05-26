@@ -19,6 +19,7 @@ const files = [
   ['images/patronize-staff-of-year.png', 'image/png'],
   ['images/cross-dept-award.png', 'image/png'],
   ['images/design-spinoff.jpeg', 'image/jpeg'],
+  ['images/motion-sickness.jpg', 'image/jpeg'],
   ['Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'documents/Adio_Azeez_Adeniran_Resume.pdf'],
 ] as const;
 
