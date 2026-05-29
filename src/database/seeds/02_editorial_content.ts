@@ -32,6 +32,7 @@ const mediaAssets = [
   ['images/cross-dept-award.png', 'cross-dept-award.png', 'image/png', 'Cross-departmental collaboration award.', 'Recognition media.'],
   ['images/design-spinoff.jpeg', 'design-spinoff.jpeg', 'image/jpeg', 'Design Spin-off 2025.', 'Talk media.'],
   ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Panoramic iridescent technology scene with satellites, neural diagrams, Lagos map details, and chrome human figures.', 'Motion Sickness panoramic cover artwork.'],
+  ['images/enemy-that-comes-back.jpg', 'enemy-that-comes-back.jpg', 'image/jpeg', 'Iridescent chrome busts facing a lone figure across a surreal reflective landscape.', 'The Enemy That Comes Back to Defeat You cover artwork.'],
   ['documents/Adio_Azeez_Adeniran_Resume.pdf', 'Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'Adio Azeez Adeniran resume PDF.', 'Resume document.'],
 ] as const;
 
@@ -132,6 +133,25 @@ const articles = [
       substackUrl: 'https://azeezadio.substack.com/p/motion-sickness?r=kfhxz',
       tags: ['AI', 'Robotics', 'Infrastructure', 'Nigeria', 'Technology'],
       readingTimeMinutes: 18,
+    },
+  },
+  {
+    slug: 'enemy-that-comes-back-to-defeat-you',
+    title: 'The Enemy That Comes Back to Defeat You',
+    excerpt:
+      'A reflection on the small engineering habits that follow you into leadership, and whether they return later as boss fights or superpowers.',
+    body: articleBody('enemy-that-comes-back.md'),
+    fileName: 'enemy-that-comes-back.jpg',
+    year: 2026,
+    month: 5,
+    published_at: '2026-05-29T08:00:00.000Z',
+    metadata: {
+      source: 'website',
+      category: 'Engineering Leadership',
+      canonicalUrl: 'https://azeezadio.com/articles/enemy-that-comes-back-to-defeat-you',
+      substackUrl: 'https://open.substack.com/pub/azeezadio/p/the-enemy-that-comes-back-to-defeat?r=kfhxz&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true',
+      tags: ['Engineering Leadership', 'Management', 'Engineering Habits', 'Product', 'Governance'],
+      readingTimeMinutes: 16,
     },
   },
 ] as const;

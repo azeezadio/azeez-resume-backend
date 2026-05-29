@@ -20,6 +20,7 @@ const files = [
   ['images/cross-dept-award.png', 'image/png'],
   ['images/design-spinoff.jpeg', 'image/jpeg'],
   ['images/motion-sickness.jpg', 'image/jpeg'],
+  ['images/enemy-that-comes-back.jpg', 'image/jpeg'],
   ['Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'documents/Adio_Azeez_Adeniran_Resume.pdf'],
 ] as const;
 
