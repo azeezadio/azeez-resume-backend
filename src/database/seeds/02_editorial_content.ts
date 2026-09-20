@@ -33,6 +33,7 @@ const mediaAssets = [
   ['images/design-spinoff.jpeg', 'design-spinoff.jpeg', 'image/jpeg', 'Design Spin-off 2025.', 'Talk media.'],
   ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Panoramic iridescent technology scene with satellites, neural diagrams, Lagos map details, and chrome human figures.', 'Motion Sickness panoramic cover artwork.'],
   ['images/enemy-that-comes-back.jpg', 'enemy-that-comes-back.jpg', 'image/jpeg', 'Iridescent chrome busts facing a lone figure across a surreal reflective landscape.', 'The Enemy That Comes Back to Defeat You cover artwork.'],
+  ['images/the-physics-of-becoming.png', 'the-physics-of-becoming.png', 'image/png', 'A lone figure in a long coat stands on a reflective plane beneath a deep-blue cosmos of concentric orbital rings and drifting planets, a lantern-lit city on the horizon, evoking gravity, orbit, and becoming.', 'The Physics of Becoming cover artwork.'],
   ['documents/Adio_Azeez_Adeniran_Resume.pdf', 'Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'Adio Azeez Adeniran resume PDF.', 'Resume document.'],
 ] as const;
 
@@ -152,6 +153,24 @@ const articles = [
       substackUrl: 'https://open.substack.com/pub/azeezadio/p/the-enemy-that-comes-back-to-defeat?r=kfhxz&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true',
       tags: ['Engineering Leadership', 'Management', 'Engineering Habits', 'Product', 'Governance'],
       readingTimeMinutes: 16,
+    },
+  },
+  {
+    slug: 'the-physics-of-becoming',
+    title: 'The Physics of Becoming',
+    excerpt:
+      "A conjecture on gravity, conviction, and what holds us. Newton's law says heavier, closer things pull harder, and it may be quietly running your life: your habits, your friendships, and who you are slowly becoming.",
+    body: articleBody('the-physics-of-becoming.md'),
+    fileName: 'the-physics-of-becoming.png',
+    year: 2026,
+    month: 8,
+    published_at: '2026-08-10T18:30:00.000Z',
+    metadata: {
+      source: 'website',
+      category: 'Philosophy',
+      canonicalUrl: 'https://azeezadio.com/articles/the-physics-of-becoming',
+      tags: ['Conviction', 'Leadership', 'Habits', 'First Principles'],
+      readingTimeMinutes: 8,
     },
   },
 ] as const;
