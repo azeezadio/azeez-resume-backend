@@ -176,7 +176,7 @@ const articles = [
   },
   {
     slug: 'the-catfish-effect',
-    title: 'The Catfish Effect: What Happens to Engineers When Nothing Is Chasing Them',
+    title: 'The Catfish Effect',
     excerpt:
       'On the problems engineering teams learn to live with, and the new hires, competitors, outages, and compliance deadlines that finally make them harder to ignore. What matters is what happens after the push.',
     body: articleBody('the-catfish-effect.md'),
