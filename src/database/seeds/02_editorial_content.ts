@@ -34,6 +34,7 @@ const mediaAssets = [
   ['images/motion-sickness.jpg', 'motion-sickness.jpg', 'image/jpeg', 'Panoramic iridescent technology scene with satellites, neural diagrams, Lagos map details, and chrome human figures.', 'Motion Sickness panoramic cover artwork.'],
   ['images/enemy-that-comes-back.jpg', 'enemy-that-comes-back.jpg', 'image/jpeg', 'Iridescent chrome busts facing a lone figure across a surreal reflective landscape.', 'The Enemy That Comes Back to Defeat You cover artwork.'],
   ['images/the-physics-of-becoming.png', 'the-physics-of-becoming.png', 'image/png', 'A lone figure in a long coat stands on a reflective plane beneath a deep-blue cosmos of concentric orbital rings and drifting planets, a lantern-lit city on the horizon, evoking gravity, orbit, and becoming.', 'The Physics of Becoming cover artwork.'],
+  ['images/the-catfish-effect.jpg', 'the-catfish-effect.jpg', 'image/jpeg', 'A large iridescent catfish seen from above in deep blue water, surrounded by swirling shoals of small silver sardines and ribbons of violet and cyan light.', 'The Catfish Effect cover artwork.'],
   ['documents/Adio_Azeez_Adeniran_Resume.pdf', 'Adio_Azeez_Adeniran_Resume.pdf', 'application/pdf', 'Adio Azeez Adeniran resume PDF.', 'Resume document.'],
 ] as const;
 
@@ -171,6 +172,24 @@ const articles = [
       canonicalUrl: 'https://azeezadio.com/articles/the-physics-of-becoming',
       tags: ['Conviction', 'Leadership', 'Habits', 'First Principles'],
       readingTimeMinutes: 8,
+    },
+  },
+  {
+    slug: 'the-catfish-effect',
+    title: 'The Catfish Effect: What Happens to Engineers When Nothing Is Chasing Them',
+    excerpt:
+      'On the problems engineering teams learn to live with, and the new hires, competitors, outages, and compliance deadlines that finally make them harder to ignore. What matters is what happens after the push.',
+    body: articleBody('the-catfish-effect.md'),
+    fileName: 'the-catfish-effect.jpg',
+    year: 2026,
+    month: 10,
+    published_at: '2026-10-01T22:30:00.000Z',
+    metadata: {
+      source: 'website',
+      category: 'Engineering Leadership',
+      canonicalUrl: 'https://azeezadio.com/articles/the-catfish-effect',
+      tags: ['Engineering Leadership', 'Engineering Culture', 'Reliability', 'Compliance', 'Teams'],
+      readingTimeMinutes: 7,
     },
   },
 ] as const;
